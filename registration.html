@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - SWOO Tech Mart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 8px 0;
+            font-size: 13px;
+        }
+
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .top-bar-left span {
+            margin-right: 20px;
+            color: #666;
+        }
+
+        .top-bar-left i {
+            color: #00c853;
+            margin-right: 5px;
+        }
+
+        .top-bar-right a {
+            color: #666;
+            text-decoration: none;
+            margin-left: 20px;
+            transition: color 0.3s;
+        }
+
+        .top-bar-right a:hover {
+            color: #00c853;
+        }
+
+        /* Header */
+        .main-header {
+            background-color: #fff;
+            padding: 15px 0;
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #00c853;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .logo-text h1 {
+            font-size: 20px;
+            color: #333;
+            line-height: 1.2;
+        }
+
+        .logo-text span {
+            font-size: 12px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Navigation */
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .main-nav a:hover {
+            color: #00c853;
+        }
+
+        .main-nav i {
+            font-size: 10px;
+            margin-left: 3px;
+        }
+
+        /* Header Actions */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .action-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            transition: all 0.3s;
+        }
+
+        .action-btn:hover {
+            background-color: #00c853;
+            color: white;
+        }
+
+        .user-account {
+            text-align: right;
+        }
+
+        .user-account span {
+            display: block;
+            font-size: 11px;
+            color: #888;
+            text-transform: uppercase;
+        }
+
+        .user-account a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .cart-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #f0f0f0;
+            padding: 8px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .cart-btn i {
+            color: #00c853;
+        }
+
+        .cart-amount {
+            font-weight: 700;
+            color: #00c853;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            background-color: #00c853;
+            padding: 12px 0;
+        }
+
+        .search-bar .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .category-dropdown {
+            background-color: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-input-wrapper {
+            flex: 1;
+            position: relative;
+        }
+
+        .search-input-wrapper input {
+            width: 100%;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #00c853;
+            border: none;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .promo-tags {
+            display: flex;
+            gap: 30px;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .promo-tags i {
+            margin-right: 5px;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background-color: #f0f0f0;
+            padding: 15px 0;
+        }
+
+        .breadcrumb .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .breadcrumb-nav {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .breadcrumb-nav a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        .breadcrumb-nav a:hover {
+            color: #00c853;
+        }
+
+        .breadcrumb-nav .current {
+            color: #333;
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        /* Illustration Section */
+        .illustration {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .illustration img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Registration Form */
+        .register-section {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+        }
+
+        .register-header {
+            margin-bottom: 30px;
+        }
+
+        .register-header h2 {
+            color: #00c853;
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        .register-header p {
+            color: #888;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .input-wrapper input:focus {
+            outline: none;
+            border-color: #00c853;
+        }
+
+        .input-wrapper input::placeholder {
+            color: #bbb;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .register-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: #00c853;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        .register-btn:hover {
+            background-color: #00b248;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .login-link a {
+            color: #00c853;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .illustration {
+                display: none;
+            }
+            
+            .main-nav {
+                display: none;
+            }
+            
+            .promo-tags {
+                display: none;
+            }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-left">
+                <span><i class="fas fa-phone"></i> Hotline 24/7: 0123 4567 890</span>
+            </div>
+            <div class="top-bar-right">
+                <a href="#">Sell on Swoo</a>
+                <a href="#">Order Track</a>
+                <a href="#">USD <i class="fas fa-chevron-down"></i></a>
+                <a href="#">Eng <i class="fas fa-chevron-down"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-check"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>SWOO</h1>
+                    <span>Tech Mart</span>
+                </div>
+            </div>
+
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#">Homes <i class="fas fa-chevron-down"></i></a></li>
+                    <li><a href="#">Pages <i class="fas fa-chevron-down"></i></a></li>
+                    <li><a href="#">Products <i class="fas fa-chevron-down"></i></a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <button class="action-btn"><i class="fas fa-search"></i></button>
+                <button class="action-btn"><i class="far fa-heart"></i></button>
+                
+                <div class="user-account">
+                    <span>Welcome</span>
+                    <a href="#">LOG IN / REGISTER</a>
+                </div>
+
+                <a href="#" class="cart-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Cart</span>
+                    <span class="cart-amount">$1,689.00</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="container">
+            <button class="category-dropdown">
+                All Categories <i class="fas fa-chevron-down"></i>
+            </button>
+            
+            <div class="search-input-wrapper">
+                <input type="text" placeholder="Search anything...">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+
+            <div class="promo-tags">
+                <span><i class="fas fa-truck"></i> Free Shipping Over $100</span>
+                <span><i class="fas fa-undo"></i> 30 Days Money Back</span>
+                <span><i class="fas fa-shield-alt"></i> 100% Secure Payment</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-nav">
+                <a href="#">Home</a> / <a href="#">pages</a> / <span class="current">Register</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Left: Illustration -->
+        <div class="illustration">
+            <!-- Placeholder for the security/tech illustration -->
+            <svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Background Elements -->
+                <rect x="50" y="180" width="120" height="80" rx="8" fill="#e3f2fd"/>
+                <rect x="60" y="190" width="100" height="60" rx="4" fill="#1976d2" opacity="0.1"/>
+                
+                <!-- Person 1 (Sitting) -->
+                <circle cx="100" cy="140" r="15" fill="#ff9800"/>
+                <rect x="85" y="155" width="30" height="40" rx="5" fill="#ff9800"/>
+                <rect x="80" y="195" width="15" height="25" rx="3" fill="#333"/>
+                <rect x="105" y="195" width="15" height="25" rx="3" fill="#333"/>
+                <rect x="75" y="180" width="50" height="15" rx="3" fill="#1565c0"/>
+                
+                <!-- Phone -->
+                <rect x="110" y="160" width="12" height="20" rx="2" fill="#333"/>
+                
+                <!-- Person 2 (Standing) -->
+                <circle cx="280" cy="120" r="15" fill="#4caf50"/>
+                <rect x="265" y="135" width="30" height="50" rx="5" fill="#4caf50"/>
+                <rect x="260" y="185" width="12" height="35" rx="3" fill="#333"/>
+                <rect x="288" y="185" width="12" height="35" rx="3" fill="#333"/>
+                
+                <!-- Phone -->
+                <rect x="270" y="145" width="12" height="20" rx="2" fill="#333"/>
+                
+                <!-- Security Shield -->
+                <path d="M190 80 L190 140 Q190 160 210 170 Q230 160 230 140 L230 80 Z" fill="#1976d2"/>
+                <path d="M200 100 L220 120 L205 135" stroke="white" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                
+                <!-- Lock Icon -->
+                <rect x="160" y="50" width="30" height="25" rx="3" fill="#7b1fa2"/>
+                <path d="M167 50 V40 Q167 30 175 30 Q183 30 183 40 V50" stroke="#7b1fa2" stroke-width="4" fill="none"/>
+                <circle cx="175" cy="62" r="3" fill="white"/>
+                
+                <!-- Gear Icons -->
+                <circle cx="150" cy="90" r="12" fill="#00c853" opacity="0.8"/>
+                <circle cx="150" cy="90" r="6" fill="white"/>
+                <circle cx="250" cy="70" r="10" fill="#ff5722" opacity="0.8"/>
+                <circle cx="250" cy="70" r="5" fill="white"/>
+                
+                <!-- Chat Bubble -->
+                <rect x="290" y="80" width="40" height="30" rx="8" fill="#ffc107"/>
+                <polygon points="300,110 305,120 310,110" fill="#ffc107"/>
+                <circle cx="305" cy="95" r="3" fill="white"/>
+                <circle cx="315" cy="95" r="3" fill="white"/>
+                <circle cx="325" cy="95" r="3" fill="white"/>
+                
+                <!-- Dollar Sign -->
+                <rect x="60" y="70" width="35" height="30" rx="6" fill="#4caf50"/>
+                <text x="77" y="92" font-family="Arial" font-size="20" fill="white" font-weight="bold">$</text>
+                
+                <!-- Connection Lines -->
+                <path d="M185 100 Q170 90 150 90" stroke="#ccc" stroke-width="2" stroke-dasharray="5,5" fill="none"/>
+                <path d="M235 100 Q245 80 250 70" stroke="#ccc" stroke-width="2" stroke-dasharray="5,5" fill="none"/>
+                <path d="M210 170 Q210 200 190 220" stroke="#ccc" stroke-width="2" stroke-dasharray="5,5" fill="none"/>
+                
+                <!-- Plants -->
+                <rect x="220" y="220" width="20" height="30" rx="3" fill="#5d4037"/>
+                <ellipse cx="230" cy="210" rx="15" ry="20" fill="#4caf50"/>
+                <rect x="250" y="230" width="16" height="20" rx="3" fill="#5d4037"/>
+                <ellipse cx="258" cy="222" rx="12" ry="16" fill="#66bb6a"/>
+            </svg>
+        </div>
+
+        <!-- Right: Registration Form -->
+        <div class="register-section">
+            <div class="register-header">
+                <h2>Register</h2>
+                <p>Join to us</p>
+            </div>
+
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="fullname">Your name</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="fullname" name="fullname" placeholder="Jhon Deo" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-wrapper">
+                        <input type="email" id="email" name="email" placeholder="Example@gmail.com" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                        <button type="button" class="toggle-password" onclick="togglePassword('password')">
+                            <i class="far fa-eye-slash"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+                        <button type="button" class="toggle-password" onclick="togglePassword('confirm-password')">
+                            <i class="far fa-eye-slash"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="register-btn">Register</button>
+            </form>
+
+            <div class="login-link">
+                Already User? <a href="#">Login</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const icon = input.nextElementSibling.querySelector('i');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            }
+        }
+    </script>
+
+</body>
+</html>
