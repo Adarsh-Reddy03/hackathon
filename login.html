@@ -3,9 +3,1170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>SWOO Tech Mart - Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ============================
+           CSS RESET & BASE STYLES
+           ============================ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #28a745;
+            --primary-green-hover: #218838;
+            --dark-text: #333333;
+            --gray-text: #777777;
+            --light-gray: #f5f5f5;
+            --border-color: #e0e0e0;
+            --white: #ffffff;
+            --red: #dc3545;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f0f2f5;
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s ease;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            font-family: inherit;
+        }
+
+        input {
+            font-family: inherit;
+            outline: none;
+        }
+
+        /* ============================
+           TOP BAR
+           ============================ */
+        .top-bar {
+            background-color: var(--white);
+            border-bottom: 1px solid var(--border-color);
+            padding: 8px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .top-bar-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .hotline {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--gray-text);
+        }
+
+        .hotline-label {
+            background-color: var(--light-gray);
+            padding: 4px 10px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .hotline-number {
+            color: var(--dark-text);
+            font-weight: 600;
+        }
+
+        .top-bar-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .top-bar-link {
+            color: var(--gray-text);
+            font-size: 13px;
+        }
+
+        .top-bar-link:hover {
+            color: var(--primary-green);
+        }
+
+        .currency-selector,
+        .language-selector {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--gray-text);
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .currency-selector i,
+        .language-selector i {
+            font-size: 10px;
+        }
+
+        .flag-icon {
+            width: 18px;
+            height: 12px;
+            border-radius: 2px;
+            object-fit: cover;
+        }
+
+        /* ============================
+           MAIN HEADER / NAVIGATION
+           ============================ */
+        .main-header {
+            background-color: var(--white);
+            padding: 15px 0;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 18px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-brand {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark-text);
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .logo-tagline {
+            font-size: 11px;
+            color: var(--gray-text);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Navigation */
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--dark-text);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .nav-item:hover {
+            color: var(--primary-green);
+        }
+
+        .nav-item i {
+            font-size: 10px;
+            color: var(--gray-text);
+        }
+
+        /* Header Actions */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .action-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-text);
+            font-size: 16px;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .action-btn:hover {
+            background-color: var(--primary-green);
+            color: var(--white);
+        }
+
+        .user-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: 10px;
+        }
+
+        .user-greeting {
+            text-align: right;
+            line-height: 1.3;
+        }
+
+        .user-greeting .welcome {
+            font-size: 11px;
+            color: var(--gray-text);
+            text-transform: uppercase;
+        }
+
+        .user-greeting .auth-link {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--dark-text);
+        }
+
+        .user-greeting .auth-link:hover {
+            color: var(--primary-green);
+        }
+
+        /* Cart */
+        .cart-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: 10px;
+        }
+
+        .cart-icon-wrapper {
+            position: relative;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 18px;
+            height: 18px;
+            background-color: var(--primary-green);
+            color: var(--white);
+            border-radius: 50%;
+            font-size: 10px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-info {
+            text-align: right;
+            line-height: 1.3;
+        }
+
+        .cart-label {
+            font-size: 11px;
+            color: var(--gray-text);
+            text-transform: uppercase;
+        }
+
+        .cart-amount {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--dark-text);
+        }
+
+        /* ============================
+           SEARCH BAR
+           ============================ */
+        .search-section {
+            background-color: var(--primary-green);
+            padding: 12px 0;
+        }
+
+        .search-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .category-dropdown {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--white);
+            padding: 10px 16px;
+            border-radius: var(--radius-md) 0 0 var(--radius-md);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--dark-text);
+            cursor: pointer;
+            white-space: nowrap;
+            border-right: 1px solid var(--border-color);
+        }
+
+        .category-dropdown i {
+            font-size: 12px;
+            color: var(--gray-text);
+        }
+
+        .search-input-wrapper {
+            flex: 1;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 16px;
+            border: none;
+            background-color: var(--white);
+            font-size: 14px;
+            color: var(--dark-text);
+        }
+
+        .search-input::placeholder {
+            color: #aaa;
+        }
+
+        .search-btn {
+            padding: 10px 16px;
+            background-color: var(--white);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            color: var(--dark-text);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .promo-badges {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .promo-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--white);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .promo-badge i {
+            font-size: 14px;
+        }
+
+        /* ============================
+           BREADCRUMB
+           ============================ */
+        .breadcrumb-section {
+            background-color: var(--white);
+            padding: 15px 0;
+            margin-top: 15px;
+            border-radius: var(--radius-md);
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--gray-text);
+        }
+
+        .breadcrumb a {
+            color: var(--gray-text);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-green);
+        }
+
+        .breadcrumb-separator {
+            color: #ccc;
+        }
+
+        .breadcrumb-current {
+            color: var(--dark-text);
+            font-weight: 500;
+        }
+
+        /* ============================
+           LOGIN SECTION
+           ============================ */
+        .login-section {
+            margin-top: 15px;
+        }
+
+        .login-card {
+            background-color: var(--white);
+            border-radius: var(--radius-lg);
+            display: flex;
+            overflow: hidden;
+            min-height: 500px;
+        }
+
+        /* Login Illustration */
+        .login-illustration {
+            flex: 1;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            position: relative;
+        }
+
+        .illustration-content {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        /* SVG Illustration styling */
+        .illustration-svg {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Login Form */
+        .login-form-wrapper {
+            flex: 1;
+            padding: 60px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-header {
+            margin-bottom: 35px;
+        }
+
+        .form-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 8px;
+        }
+
+        .form-subtitle {
+            font-size: 13px;
+            color: var(--gray-text);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--dark-text);
+            margin-bottom: 8px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            color: var(--dark-text);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: #bbb;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-text);
+            cursor: pointer;
+            font-size: 14px;
+            transition: color 0.2s ease;
+        }
+
+        .password-toggle:hover {
+            color: var(--dark-text);
+        }
+
+        .forgot-password {
+            display: block;
+            text-align: left;
+            margin-top: 8px;
+            font-size: 13px;
+            color: var(--gray-text);
+        }
+
+        .forgot-password:hover {
+            color: var(--primary-green);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-green);
+            color: var(--white);
+            font-size: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: var(--radius-md);
+            margin-top: 10px;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        .login-btn:hover {
+            background-color: var(--primary-green-hover);
+        }
+
+        .login-btn:active {
+            transform: scale(0.98);
+        }
+
+        .signup-prompt {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: var(--gray-text);
+        }
+
+        .signup-link {
+            color: var(--primary-green);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+
+        .signup-link:hover {
+            text-decoration: underline;
+        }
+
+        /* ============================
+           RESPONSIVE DESIGN
+           ============================ */
+        @media (max-width: 992px) {
+            .login-card {
+                flex-direction: column;
+            }
+
+            .login-illustration {
+                display: none;
+            }
+
+            .login-form-wrapper {
+                padding: 40px;
+            }
+
+            .promo-badges {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar-inner {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .main-nav {
+                display: none;
+            }
+
+            .header-inner {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .search-box {
+                width: 100%;
+                max-width: none;
+            }
+
+            .login-form-wrapper {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+<base target="_blank">
 </head>
 <body>
-    <h1>jakdkasv</h1>
+
+    <!-- ============================
+         TOP BAR
+         ============================ -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-inner">
+                <div class="hotline">
+                    <span class="hotline-label">Hotline 24/7</span>
+                    <span class="hotline-number">(025) 3886 25 16</span>
+                </div>
+                <div class="top-bar-right">
+                    <a href="#" class="top-bar-link">Sell on Swoo</a>
+                    <a href="#" class="top-bar-link">Order Tracki</a>
+                    <div class="currency-selector">
+                        <span>USD</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="language-selector">
+                        <img src="https://flagcdn.com/w20/us.png" alt="English" class="flag-icon">
+                        <span>Eng</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================
+         MAIN HEADER
+         ============================ -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-inner">
+                <!-- Logo -->
+                <a href="#" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-brand">SWOO</span>
+                        <span class="logo-tagline">TECH MART</span>
+                    </div>
+                </a>
+
+                <!-- Navigation -->
+                <nav class="main-nav">
+                    <a href="#" class="nav-item">
+                        Homes
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <a href="#" class="nav-item">
+                        Pages
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <a href="#" class="nav-item">
+                        Products
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <a href="#" class="nav-item">Contact</a>
+                </nav>
+
+                <!-- Header Actions -->
+                <div class="header-actions">
+                    <button class="action-btn" title="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="action-btn" title="Wishlist">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <button class="action-btn" title="Compare">
+                        <i class="fas fa-exchange-alt"></i>
+                    </button>
+
+                    <div class="user-section">
+                        <div class="user-greeting">
+                            <div class="welcome">Welcome</div>
+                            <a href="#" class="auth-link">LOG IN / REGISTER</a>
+                        </div>
+                    </div>
+
+                    <div class="cart-wrapper">
+                        <div class="cart-icon-wrapper">
+                            <button class="action-btn" title="Cart">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                            <span class="cart-badge">3</span>
+                        </div>
+                        <div class="cart-info">
+                            <div class="cart-label">CART</div>
+                            <div class="cart-amount">$1,689.00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================
+         SEARCH BAR
+         ============================ -->
+    <div class="search-section">
+        <div class="container">
+            <div class="search-inner">
+                <div class="search-box">
+                    <div class="category-dropdown">
+                        <span>All Categories</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="search-input-wrapper">
+                        <input type="text" class="search-input" placeholder="Search anything...">
+                    </div>
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+                <div class="promo-badges">
+                    <div class="promo-badge">
+                        <i class="fas fa-truck"></i>
+                        <span>Free Shipping Over $199</span>
+                    </div>
+                    <div class="promo-badge">
+                        <i class="fas fa-undo"></i>
+                        <span>30 Days Money Back</span>
+                    </div>
+                    <div class="promo-badge">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>100% Secure Payment</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================
+         MAIN CONTENT
+         ============================ -->
+    <main class="container">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb-section">
+            <div class="breadcrumb">
+                <a href="#">Home</a>
+                <span class="breadcrumb-separator">/</span>
+                <a href="#">pages</a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">login</span>
+            </div>
+        </div>
+
+        <!-- Login Card -->
+        <div class="login-section">
+            <div class="login-card">
+                <!-- Illustration -->
+                <div class="login-illustration">
+                    <div class="illustration-content">
+                        <!-- SVG Illustration matching the design -->
+                        <svg class="illustration-svg" viewBox="0 0 400 350" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Background elements -->
+                            <rect x="20" y="200" width="160" height="80" rx="8" fill="#4FC3F7" opacity="0.9"/>
+                            <rect x="30" y="210" width="40" height="20" rx="4" fill="white" opacity="0.3"/>
+
+                            <!-- Plant pots -->
+                            <path d="M120 280 L130 320 L170 320 L180 280 Z" fill="#795548"/>
+                            <ellipse cx="150" cy="280" rx="30" ry="8" fill="#5D4037"/>
+                            <path d="M150 280 Q130 240 140 220" stroke="#4CAF50" stroke-width="4" fill="none"/>
+                            <ellipse cx="140" cy="215" rx="12" ry="8" fill="#66BB6A"/>
+
+                            <path d="M200 290 L210 330 L250 330 L260 290 Z" fill="#795548"/>
+                            <ellipse cx="230" cy="290" rx="30" ry="8" fill="#5D4037"/>
+                            <path d="M230 290 Q210 250 220 230" stroke="#4CAF50" stroke-width="4" fill="none"/>
+                            <ellipse cx="220" cy="225" rx="14" ry="10" fill="#66BB6A"/>
+                            <path d="M230 290 Q250 250 240 230" stroke="#4CAF50" stroke-width="4" fill="none"/>
+                            <ellipse cx="240" cy="225" rx="12" ry="8" fill="#81C784"/>
+
+                            <!-- Main structure -->
+                            <rect x="80" y="80" width="8" height="180" fill="#5C6BC0"/>
+                            <rect x="280" y="80" width="8" height="180" fill="#5C6BC0"/>
+                            <rect x="88" y="80" width="192" height="8" fill="#5C6BC0"/>
+
+                            <!-- Lock icon circle -->
+                            <circle cx="140" cy="110" r="35" fill="#5C6BC0"/>
+                            <rect x="125" y="100" width="30" height="25" rx="3" fill="white" opacity="0.9"/>
+                            <circle cx="140" cy="95" r="8" stroke="white" stroke-width="3" fill="none"/>
+                            <circle cx="140" cy="112" r="3" fill="#5C6BC0"/>
+                            <line x1="140" y1="115" x2="140" y2="122" stroke="#5C6BC0" stroke-width="2"/>
+
+                            <!-- Gears -->
+                            <circle cx="200" cy="90" r="15" fill="#42A5F5"/>
+                            <circle cx="200" cy="90" r="8" fill="white"/>
+                            <rect x="195" y="70" width="10" height="8" fill="#42A5F5"/>
+                            <rect x="195" y="102" width="10" height="8" fill="#42A5F5"/>
+                            <rect x="180" y="85" width="8" height="10" fill="#42A5F5"/>
+                            <rect x="212" y="85" width="8" height="10" fill="#42A5F5"/>
+
+                            <circle cx="230" cy="105" r="12" fill="#66BB6A"/>
+                            <circle cx="230" cy="105" r="6" fill="white"/>
+                            <rect x="226" y="89" width="8" height="6" fill="#66BB6A"/>
+                            <rect x="226" y="115" width="8" height="6" fill="#66BB6A"/>
+
+                            <!-- Shield with checkmark -->
+                            <path d="M200 160 L200 130 Q200 125 205 125 L235 125 Q240 125 240 130 L240 160 Q240 175 220 185 Q200 175 200 160Z" fill="#66BB6A"/>
+                            <path d="M210 155 L218 163 L232 145" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+                            <!-- Chat bubble with stars -->
+                            <rect x="280" y="140" width="50" height="40" rx="8" fill="#FFCA28"/>
+                            <polygon points="290,180 285,195 300,180" fill="#FFCA28"/>
+                            <text x="292" y="165" font-size="14" fill="white">★★★</text>
+
+                            <!-- Dollar sign bubble -->
+                            <rect x="50" y="140" width="45" height="40" rx="8" fill="#66BB6A"/>
+                            <polygon points="65,180 60,195 75,180" fill="#66BB6A"/>
+                            <text x="68" y="165" font-size="18" fill="white" font-weight="bold">$</text>
+
+                            <!-- Person 1 (sitting) -->
+                            <ellipse cx="95" cy="200" rx="18" ry="22" fill="#FFCC80"/> <!-- Head -->
+                            <rect x="75" y="215" width="40" height="50" rx="8" fill="#FFC107"/> <!-- Body -->
+                            <rect x="70" y="260" width="18" height="35" rx="5" fill="#333"/> <!-- Leg -->
+                            <rect x="92" y="260" width="18" height="35" rx="5" fill="#333"/> <!-- Leg -->
+                            <rect x="65" y="220" width="15" height="35" rx="5" fill="#FFCC80"/> <!-- Arm -->
+                            <rect x="105" y="220" width="15" height="30" rx="5" fill="#FFCC80"/> <!-- Arm holding phone -->
+                            <rect x="115" y="245" width="12" height="18" rx="2" fill="#555"/> <!-- Phone -->
+
+                            <!-- Person 2 (standing) -->
+                            <ellipse cx="310" cy="200" rx="16" ry="20" fill="#FFCC80"/> <!-- Head -->
+                            <rect x="295" y="218" width="30" height="55" rx="6" fill="#29B6F6"/> <!-- Body -->
+                            <rect x="290" y="270" width="14" height="45" rx="4" fill="#333"/> <!-- Leg -->
+                            <rect x="316" y="270" width="14" height="45" rx="4" fill="#333"/> <!-- Leg -->
+                            <rect x="285" y="225" width="12" height="40" rx="4" fill="#FFCC80"/> <!-- Arm -->
+                            <rect x="323" y="225" width="12" height="35" rx="4" fill="#FFCC80"/> <!-- Arm holding phone -->
+                            <rect x="330" y="255" width="10" height="16" rx="2" fill="#555"/> <!-- Phone -->
+
+                            <!-- Connection lines -->
+                            <line x1="148" y1="110" x2="200" y2="160" stroke="#5C6BC0" stroke-width="2" stroke-dasharray="4"/>
+                            <line x1="240" y1="160" x2="280" y2="160" stroke="#5C6BC0" stroke-width="2"/>
+                            <line x1="200" y1="185" x2="200" y2="280" stroke="#5C6BC0" stroke-width="3"/>
+
+                            <!-- Bottom platform -->
+                            <rect x="40" y="320" width="120" height="15" rx="4" fill="#4FC3F7"/>
+                            <text x="55" y="331" font-size="9" fill="white" letter-spacing="2">XXXX - XXXX - XXXX - XXXX</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Login Form -->
+                <div class="login-form-wrapper">
+                    <div class="form-header">
+                        <h1 class="form-title">Welcome Back</h1>
+                        <p class="form-subtitle">LOGIN TO CONTINUE</p>
+                    </div>
+
+                    <form id="loginForm" novalidate>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                class="form-input" 
+                                placeholder="Example@gmail.com"
+                                autocomplete="email"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" class="form-label">Password</label>
+                            <div class="input-wrapper">
+                                <input 
+                                    type="password" 
+                                    id="password" 
+                                    class="form-input" 
+                                    placeholder="••••••••"
+                                    autocomplete="current-password"
+                                    required
+                                >
+                                <span class="password-toggle" id="togglePassword">
+                                    <i class="far fa-eye-slash"></i>
+                                </span>
+                            </div>
+                            <a href="#" class="forgot-password">Forget Password ?</a>
+                        </div>
+
+                        <button type="submit" class="login-btn">Login</button>
+                    </form>
+
+                    <p class="signup-prompt">
+                        NEW USER ? <a href="#" class="signup-link">SIGN UP</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ============================
+         JAVASCRIPT
+         ============================ -->
+    <script>
+        /**
+         * Login Page JavaScript
+         * Handles form validation, password toggle, and user interactions
+         */
+
+        (function() {
+            'use strict';
+
+            // ============================
+            // DOM Element References
+            // ============================
+            const loginForm = document.getElementById('loginForm');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const togglePasswordBtn = document.getElementById('togglePassword');
+            const searchInput = document.querySelector('.search-input');
+            const categoryDropdown = document.querySelector('.category-dropdown');
+
+            // ============================
+            // Password Visibility Toggle
+            // ============================
+            togglePasswordBtn.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+
+                // Toggle icon
+                const icon = this.querySelector('i');
+                icon.classList.toggle('fa-eye');
+                icon.classList.toggle('fa-eye-slash');
+            });
+
+            // ============================
+            // Form Validation & Submission
+            // ============================
+            loginForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                let isValid = true;
+
+                // Validate email
+                const emailValue = emailInput.value.trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (!emailValue) {
+                    showError(emailInput, 'Email address is required');
+                    isValid = false;
+                } else if (!emailRegex.test(emailValue)) {
+                    showError(emailInput, 'Please enter a valid email address');
+                    isValid = false;
+                } else {
+                    clearError(emailInput);
+                }
+
+                // Validate password
+                const passwordValue = passwordInput.value;
+
+                if (!passwordValue) {
+                    showError(passwordInput, 'Password is required');
+                    isValid = false;
+                } else if (passwordValue.length < 6) {
+                    showError(passwordInput, 'Password must be at least 6 characters');
+                    isValid = false;
+                } else {
+                    clearError(passwordInput);
+                }
+
+                // If valid, simulate login
+                if (isValid) {
+                    simulateLogin(emailValue);
+                }
+            });
+
+            // ============================
+            // Error Handling Helpers
+            // ============================
+            function showError(input, message) {
+                // Remove existing error
+                clearError(input);
+
+                // Add error styling
+                input.style.borderColor = '#dc3545';
+                input.style.boxShadow = '0 0 0 3px rgba(220, 53, 69, 0.1)';
+
+                // Create error message
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'error-message';
+                errorDiv.textContent = message;
+                errorDiv.style.cssText = `
+                    color: #dc3545;
+                    font-size: 12px;
+                    margin-top: 6px;
+                    font-weight: 500;
+                `;
+
+                input.parentElement.appendChild(errorDiv);
+
+                // Shake animation
+                input.style.animation = 'shake 0.4s ease';
+                setTimeout(() => {
+                    input.style.animation = '';
+                }, 400);
+            }
+
+            function clearError(input) {
+                input.style.borderColor = '';
+                input.style.boxShadow = '';
+
+                const parent = input.parentElement;
+                const error = parent.querySelector('.error-message');
+                if (error) {
+                    error.remove();
+                }
+            }
+
+            // ============================
+            // Simulate Login Process
+            // ============================
+            function simulateLogin(email) {
+                const btn = loginForm.querySelector('.login-btn');
+                const originalText = btn.textContent;
+
+                // Show loading state
+                btn.textContent = 'Logging in...';
+                btn.disabled = true;
+                btn.style.opacity = '0.8';
+
+                // Simulate API call
+                setTimeout(() => {
+                    btn.textContent = 'Success!';
+                    btn.style.backgroundColor = '#218838';
+
+                    setTimeout(() => {
+                        alert(`Welcome back! Successfully logged in as: ${email}`);
+
+                        // Reset button
+                        btn.textContent = originalText;
+                        btn.disabled = false;
+                        btn.style.opacity = '1';
+                        btn.style.backgroundColor = '';
+
+                        // Clear form
+                        loginForm.reset();
+                    }, 500);
+                }, 1500);
+            }
+
+            // ============================
+            // Real-time Validation
+            // ============================
+            emailInput.addEventListener('blur', function() {
+                const value = this.value.trim();
+                if (value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                    showError(this, 'Please enter a valid email address');
+                } else {
+                    clearError(this);
+                }
+            });
+
+            emailInput.addEventListener('input', function() {
+                clearError(this);
+            });
+
+            passwordInput.addEventListener('input', function() {
+                clearError(this);
+            });
+
+            // ============================
+            // Search Functionality
+            // ============================
+            searchInput.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    const query = this.value.trim();
+                    if (query) {
+                        alert(`Searching for: "${query}"`);
+                    }
+                }
+            });
+
+            // ============================
+            // Category Dropdown Toggle
+            // ============================
+            categoryDropdown.addEventListener('click', function() {
+                // In a real app, this would open a dropdown menu
+                this.style.backgroundColor = '#f0f0f0';
+                setTimeout(() => {
+                    this.style.backgroundColor = '';
+                }, 150);
+            });
+
+            // ============================
+            // CSS Animation Keyframes (injected)
+            // ============================
+            const styleSheet = document.createElement('style');
+            styleSheet.textContent = `
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    25% { transform: translateX(-8px); }
+                    75% { transform: translateX(8px); }
+                }
+            `;
+            document.head.appendChild(styleSheet);
+
+            // ============================
+            // Console Welcome Message
+            // ============================
+            console.log('%c SWOO Tech Mart ', 'background: #28a745; color: white; font-size: 20px; font-weight: bold; padding: 10px 20px; border-radius: 8px;');
+            console.log('%c Login Page Loaded Successfully ', 'color: #28a745; font-size: 14px;');
+
+        })();
+    </script>
 </body>
 </html>
